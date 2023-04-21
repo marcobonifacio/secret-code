@@ -20,6 +20,23 @@ body {
   gap: 20px;
 }
 
+.line {
+  border-style: solid;
+  border-color: lightgray;
+  border-width: 0 0 0 1px;
+  height: 180px;
+  width: 0px;
+  gap: 10px;
+}
+
+button {
+  background-color: dimgray;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+}
+
 @media (max-width: 700px) {
   .board {
     flex-direction: column;
@@ -27,5 +44,10 @@ body {
   }
   .board > div {
     flex-direction: row;
+  }
+  .line {
+    border-width: 1px 0 0 0;
+    width: 180px;
+    height: 0px;
   }
 }
