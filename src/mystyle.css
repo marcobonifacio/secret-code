@@ -5,9 +5,22 @@
 body {
   font-family: Arial, Helvetica, sans-serif;
   background-color: black;
+  color: lightgray;
+}
+
+h1 {
+  font-family: Audiowide, sans-serif;
+  text-align: center;
+  margin-bottom: 5px;
+}
+
+#legend {
+  text-align: center;
+  text-decoration: underline;
 }
 
 .board {
+  margin-top: 20px;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -35,6 +48,14 @@ button {
   border-radius: 50%;
   width: 30px;
   height: 30px;
+}
+
+#guess {
+  margin-top: 20px;
+  background-color: lightgray;
+  width: 80px;
+  border-radius: 8px;
+  color: black;
 }
 
 @media (max-width: 700px) {
