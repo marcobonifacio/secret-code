@@ -14,6 +14,10 @@ h1 {
   margin-bottom: 5px;
 }
 
+h4 {
+  text-align: center;
+}
+
 #legend {
   text-align: center;
   text-decoration: underline;
@@ -62,6 +66,55 @@ button {
   display: flex;
   flex-direction: row;
   justify-content: center;
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 300px;
+  height: 320px;
+  border: 1px solid dimgray;
+  background-color: black;
+  padding: 10px;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+}
+
+.popup > div {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left: 10px;
+}
+
+.popup p {
+  padding-left: 15px;
+}
+
+.in-code, .out-code, .guessed {
+  outline-style: solid;
+  outline-width: 3px;
+  outline-offset: 2px;
+}
+
+.in-code {
+  outline-color: yellow;
+}
+
+.out-code {
+  outline-color: lightgray;
+}
+
+.guessed {
+  outline-color: lawngreen;
+}
+
+.close {
+  position: absolute;
+  top: 0px;
+  right: 10px;
+  font-size: 20px;
 }
 
 @media (max-width: 700px) {
