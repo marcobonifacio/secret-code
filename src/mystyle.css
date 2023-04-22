@@ -58,6 +58,12 @@ button {
   color: black;
 }
 
+#div-guess {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
 @media (max-width: 700px) {
   .board {
     flex-direction: column;
