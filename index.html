@@ -11,7 +11,7 @@
   </head>
   <body>
     <h1>Secret Code</h1>
-    <p id="legend">How to play</p>
+    <p id="legend" py-click="show_legend()">How to play</p>
     <div class="board">
       <div>
         <button id="1"></button>
@@ -84,8 +84,8 @@
     <div id="div-guess">
       <button id="guess">Guess!</button>
     </div>
-    <div class="popup">
-      <div class="close">x</div>
+    <div id="div-legend" class="popup">
+      <div class="dismiss" py-click="hide_legend()">x</div>
       <h4>How to play</h4>
       <p>Try to guess the four-colors code in 10 moves!</p>
       <div>
@@ -101,5 +101,7 @@
         <p>In the code and right place</p>
       </div>
     </div>
+    <py-script src="src/main.py"></py-script>
+    <py-config src="src/pyscript.toml"></py-config>
   </body>
 </html>
