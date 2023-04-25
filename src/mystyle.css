@@ -114,6 +114,10 @@ button {
   outline-color: lawngreen;
 }
 
+.active {
+  background-color: lightgray;
+}
+
 .dismiss {
   position: absolute;
   top: 0px;
