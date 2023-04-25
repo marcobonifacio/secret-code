@@ -77,9 +77,9 @@ class Row:
           self.code.elements[n].guessed = True
           button.guessed = True
           js.document.getElementById(button.id).className = 'guessed'
-      for e in self.code.elements:
+      for n, e in enumerate(self.code.elements):
         if e.guessed:
-          _ = self.code.elements.pop(e)
+          _ = self.code.elements.pop(n)
       for n, button in enumerate(self.buttons):
         if button.guessed:
           pass
