@@ -77,14 +77,12 @@ class Row:
           self.code.elements[n].guessed = True
           button.guessed = True
           js.document.getElementById(button.id).className = 'guessed'
-      for n, e in enumerate(self.code.elements):
-        if e.guessed:
-          _ = self.code.elements.pop(n)
+      new_code = [e.color for e in self.code.elements if not e.guessed]
       for n, button in enumerate(self.buttons):
         if button.guessed:
           pass
         else:
-          if button.color in [e.color for e in self.code.elements]:
+          if button.color in new_code:
             button.in_code = True
             js.document.getElementById(button.id).className = 'in-code'
       for n, button in enumerate(self.buttons):
