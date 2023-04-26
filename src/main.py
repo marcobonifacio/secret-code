@@ -1,6 +1,7 @@
 import random
+import time
+import asyncio
 import js
-from pyodide.ffi.wrappers import add_event_listener
 
 COLORS = [
   'cyan',
@@ -13,15 +14,18 @@ COLORS = [
   'gold'
   ]
 
-def show_legend():
-  js.document.getElementById('div-legend').style.opacity = 1
-  js.document.getElementById('div-legend').style.visibility = 'visible'
-  js.document.getElementById('div-legend').style.zIndex = 1
+def show(element):
+  js.document.getElementById(element).style.opacity = 1
+  js.document.getElementById(element).style.visibility = 'visible'
+  js.document.getElementById(element).style.zIndex = 1
 
-def hide_legend():
-  js.document.getElementById('div-legend').style.opacity = 0
-  js.document.getElementById('div-legend').style.visibility = 'hidden'
-  js.document.getElementById('div-legend').style.zIndex = -1
+def hide(element):
+  js.document.getElementById(element).style.opacity = 0
+  js.document.getElementById(element).style.visibility = 'hidden'
+  js.document.getElementById(element).style.zIndex = -1
+
+def new():
+  js.window.location.reload()
 
 
 class Element:
@@ -38,6 +42,10 @@ class Code:
     self.elements = list()
     for i in range(4):
       self.elements.append(Element(i))
+  
+  def show(self):
+    for e in self.elements:
+      js.document.getElementById("c" + str(e.id + 1)).style.backgroundColor = e.color
 
 
 class Button:
@@ -70,7 +78,7 @@ class Row:
     for i in range(4):
       self.buttons.append(Button(self.id, i))
   
-  def guess(self):
+  async def guess(self):
     if all([b.pressed for b in self.buttons]):
       for n, button in enumerate(self.buttons):
         if button.color == self.code.elements[n].color:
@@ -88,10 +96,15 @@ class Row:
       for n, button in enumerate(self.buttons):
         if not(button.guessed or button.in_code):
           js.document.getElementById(button.id).className = 'out-code'
-      game.move += 1
-      game.play()
+      if all([b.guessed for b in self.buttons]):
+        game.win()
+      else:
+        game.move += 1
+        game.play()
     else:
-      pass
+      show('toast')
+      await asyncio.sleep(3)
+      hide('toast')
   
 
 class Game:
@@ -101,8 +114,20 @@ class Game:
     self.move = 0
   
   def play(self):
-    if self.move < 10:
+    if self.move < 6:
       self.row = Row(self.code, self.move)
+    else:
+      self.lose()
+  
+  def win(self):
+    self.code.show()
+    js.document.getElementById('final').innerHTML = f'You win!<br>In {self.move + 1} moves.'
+    show('div-final')
+  
+  def lose(self):
+    self.code.show()
+    js.document.getElementById('final').innerHTML = 'Oh no!<br>You lose.'
+    show('div-final')
 
 
 game = Game()

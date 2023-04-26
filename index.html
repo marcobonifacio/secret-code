@@ -11,8 +11,15 @@
   </head>
   <body>
     <h1>Secret Code</h1>
-    <p id="legend" py-click="show_legend()">How to play</p>
+    <p id="legend" py-click="show('div-legend')">How to play</p>
     <div class="board">
+      <div>
+        <button id="c1"></button>
+        <button id="c2"></button>
+        <button id="c3"></button>
+        <button id="c4"></button>
+      </div>
+      <div class="line"></div>
       <div>
         <button id="01" disabled py-click="game.row.buttons[0].change_color()"></button>
         <button id="02" disabled py-click="game.row.buttons[1].change_color()"></button>
@@ -49,38 +56,14 @@
         <button id="53" disabled py-click="game.row.buttons[2].change_color()"></button>
         <button id="54" disabled py-click="game.row.buttons[3].change_color()"></button>
       </div>
-      <div>
-        <button id="61" disabled py-click="game.row.buttons[0].change_color()"></button>
-        <button id="62" disabled py-click="game.row.buttons[1].change_color()"></button>
-        <button id="63" disabled py-click="game.row.buttons[2].change_color()"></button>
-        <button id="64" disabled py-click="game.row.buttons[3].change_color()"></button>
-      </div>
-      <div>
-        <button id="71" disabled py-click="game.row.buttons[0].change_color()"></button>
-        <button id="72" disabled py-click="game.row.buttons[1].change_color()"></button>
-        <button id="73" disabled py-click="game.row.buttons[2].change_color()"></button>
-        <button id="74" disabled py-click="game.row.buttons[3].change_color()"></button>
-      </div>
-      <div>
-        <button id="81" disabled py-click="game.row.buttons[0].change_color()"></button>
-        <button id="82" disabled py-click="game.row.buttons[1].change_color()"></button>
-        <button id="83" disabled py-click="game.row.buttons[2].change_color()"></button>
-        <button id="84" disabled py-click="game.row.buttons[3].change_color()"></button>
-      </div>
-      <div>
-        <button id="91" disabled py-click="game.row.buttons[0].change_color()"></button>
-        <button id="92" disabled py-click="game.row.buttons[1].change_color()"></button>
-        <button id="93" disabled py-click="game.row.buttons[2].change_color()"></button>
-        <button id="94" disabled py-click="game.row.buttons[3].change_color()"></button>
-      </div>
     </div>
     <div id="div-guess">
       <button id="guess" py-click="game.row.guess()">Guess!</button>
     </div>
     <div id="div-legend" class="popup">
-      <div class="dismiss" py-click="hide_legend()">x</div>
+      <div class="dismiss" py-click="hide('div-legend')">x</div>
       <h4>How to play</h4>
-      <p>Try to guess the four-colors code in 10 moves!</p>
+      <p>Try to guess the four-colors code out of 8 colors in max 6 moves!</p>
       <div>
         <button class="out-code"></button>
         <p>Not in the code</p>
@@ -93,6 +76,12 @@
         <button class="guessed"></button>
         <p>In the code and right place</p>
       </div>
+    </div>
+    <div id="toast">Please select four colors by pressing the lighter circles</div>
+    <div id="div-final" class="popup">
+      <div class="dismiss" py-click="hide('div-final')">x</div>
+      <div id="final"></div>
+      <button id="new" py-click="new()">New game?</button>
     </div>
     <py-script src="src/main.py"></py-script>
     <py-config src="src/pyscript.toml"></py-config>
